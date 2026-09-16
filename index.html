@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#090b14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="mUseCanVas" />
+  <meta name="description" content="Draw luminous lines. Hear them loop." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>mUseCanVas</title>
+</head>
+<body>
+  <main id="app" class="app-shell">
+    <canvas id="canvas" aria-label="Musical drawing canvas"></canvas>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <header class="brand" aria-hidden="true"><span class="brand-mark"></span><span>mUseCanVas</span></header>
+    <div class="utility-bar" aria-label="History and settings">
+      <button id="undoButton" class="icon-button" type="button" aria-label="Undo" title="Undo">↶</button>
+      <button id="redoButton" class="icon-button" type="button" aria-label="Redo" title="Redo">↷</button>
+      <button id="settingsButton" class="icon-button" type="button" aria-label="Settings" title="Settings">⌁</button>
+    </div>
+    <section id="settingsPanel" class="settings-panel" aria-label="Sound settings" aria-hidden="true">
+      <div class="settings-header"><div><p class="eyebrow">Sound</p><h2>Shape the air</h2></div><button id="closeSettingsButton" class="icon-button" type="button" aria-label="Close settings">×</button></div>
+      <label class="setting-row"><span>Wave</span><select id="waveSelect"><option value="sine">Sine</option><option value="triangle" selected>Triangle</option><option value="sawtooth">Saw</option><option value="square">Square</option></select></label>
+      <label class="setting-row setting-slider"><span>Brightness</span><input id="brightnessInput" type="range" min="400" max="9000" value="4200" step="100" /></label>
+      <label class="setting-row setting-slider"><span>Ambience</span><input id="ambienceInput" type="range" min="0" max="0.5" value="0.16" step="0.01" /></label>
+      <label class="setting-row setting-slider"><span>Scale pull</span><input id="attractionInput" type="range" min="0" max="0.95" value="0.78" step="0.01" /></label>
+      <p class="settings-hint">Pencil draws. Fingers move and zoom the canvas.</p>
+    </section>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <nav class="control-pill" aria-label="Musical controls">
+      <button id="playButton" class="play-button" type="button" aria-label="Play loop"><span class="play-icon" aria-hidden="true"></span></button>
+      <div class="control-divider" aria-hidden="true"></div>
+      <label class="compact-control bpm-control"><span class="control-label">BPM</span><input id="bpmInput" type="number" inputmode="numeric" min="40" max="240" value="120" aria-label="Tempo in BPM" /></label>
+      <label class="compact-control"><span class="control-label">KEY</span><select id="keySelect" aria-label="Musical key"><option value="0" selected>C</option><option value="1">C♯</option><option value="2">D</option><option value="3">E♭</option><option value="4">E</option><option value="5">F</option><option value="6">F♯</option><option value="7">G</option><option value="8">A♭</option><option value="9">A</option><option value="10">B♭</option><option value="11">B</option></select></label>
+      <label class="compact-control scale-control"><span class="control-label">SCALE</span><select id="scaleSelect" aria-label="Scale"><option value="major" selected>Major</option><option value="minor">Minor</option><option value="pentatonic">Pentatonic</option><option value="chromatic">Chromatic</option></select></label>
+      <div class="control-divider" aria-hidden="true"></div>
+      <button id="toolButton" class="text-button" type="button" aria-pressed="false"><span class="tool-dot"></span><span id="toolLabel">Draw</span></button>
+      <button id="clearButton" class="text-button quiet" type="button">Clear</button>
+    </nav>
+  </main>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
